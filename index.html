@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="de">
+<head>
+<link rel="preconnect" href="https://cdn.openart.ai" crossorigin>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#113d30"/>
+<meta name="robots" content="index,follow"/>
+<meta name="description" content="Finde fünf Unterschiede auf dem Schreibtisch! Ein KIleicht-Minispiel, mit ChatGPT entwickelt und OpenArt-Bildern gestaltet."/>
+<title>KIleicht · Finde 5 Unterschiede</title>
+<style>
+:root {--forest:#143c2e;--forest2:#215744;--cream:#f8f5e9;--off:#fffcf4;--mint:#c5f18a;--sub:#668173;--line:#d8e3d4;--blue:#297c87}
+*{box-sizing:border-box}html{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:#e7eddf;color:var(--forest)}body{margin:0;padding:12px 10px 45px;background:linear-gradient(160deg,#f8f8ec,#e7f2df);min-height:100vh}
+.container{width:min(1040px,100%);margin:0 auto;background:var(--off);border:1px solid #caddc6;border-radius:23px;overflow:hidden;box-shadow:0 12px 35px #26493722}
+header{background:var(--forest);color:white;padding:14px 19px 19px}header .logo{width:110px;height:auto;padding:4px;background:var(--off);border-radius:9px;display:block}
+header h1{font-size:clamp(24px,5.7vw,38px);letter-spacing:-.04em;margin:14px 0 5px;line-height:1.08}header p{margin:0;color:#dfefdd;font-size:clamp(12px,2.8vw,15px);line-height:1.4}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#e7f3e1;padding:10px 12px;border-bottom:1px solid var(--line)}.stat{background:white;border:1px solid #d5e3d0;border-radius:13px;padding:9px;text-align:center}.stat label{display:block;color:var(--sub);font-weight:700;font-size:12px}.stat b{display:block;font-size:25px;font-variant-numeric:tabular-nums}
+.content{padding:13px 12px 8px}.intro{font-size:13px;color:var(--sub);margin:0 0 13px}.photos{display:grid;grid-template-columns:1fr;gap:12px}.photo-box{min-width:0}.photo-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;gap:8px}.photo-title h2{font-size:14px;margin:0}.photo-title span{font-size:11px;font-weight:700;color:var(--sub)}
+.viewport{overflow-x:auto;overflow-y:hidden;border:2px solid var(--forest);border-radius:13px;background:#242c29;touch-action:pan-x pinch-zoom;scrollbar-width:thin;scrollbar-color:#a1ca8e #e5f1dc;overscroll-behavior-x:contain;scroll-behavior:auto}
+.plane{line-height:0;position:relative;min-width:100%;width:100%;user-select:none;-webkit-user-select:none}.plane img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:fill;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.plane.zoom{width:900px;min-width:900px}.marker{position:absolute;z-index:2;width:6.5%;height:18%;border:4px solid #c5ff85;border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 2px #174b34,0 0 14px #81d25e;pointer-events:none;background:#b8ff7c30;animation:show .25s ease}.marker:after{content:'✓';font:900 14px system-ui;position:absolute;right:-6px;top:-11px;background:var(--mint);color:var(--forest);border-radius:100%;width:23px;height:23px;display:grid;place-items:center}
+.marker.hint{border:4px dashed #fff131;background:#ffdd2144;animation:pulse .7s infinite}.marker.hint:after{content:'?';background:#ffe873}
+@keyframes show{from{scale:.4;opacity:0}to{scale:1;opacity:1}}@keyframes pulse{50%{scale:1.17}}
+#changed{cursor:crosshair} .tools{display:flex;flex-wrap:wrap;gap:8px;padding:12px 12px 0}.btn{flex:1;min-height:46px;min-width:128px;cursor:pointer;border-radius:12px;border:1px solid #c6d8c2;background:#f3f7ef;color:var(--forest);font:700 13px system-ui;padding:10px 12px;touch-action:manipulation}.btn:focus-visible{outline:3px solid #7bcb50;outline-offset:2px}.btn:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--mint);border-color:#a6e46e}
+#toast{margin:8px 12px 8px;min-height:22px;text-align:center;font-weight:700;font-size:13px;color:var(--forest)}
+footer{margin-top:5px;padding:13px 17px 18px;background:#eef4e9;color:#647c6c;font-size:12px;line-height:1.5}footer b{color:var(--forest)}
+.screen{position:fixed;z-index:20;inset:0;display:none;align-items:center;justify-content:center;background:#092c23cc;padding:16px}.screen.show{display:flex}.modal{background:var(--off);padding:25px;border-radius:22px;width:min(390px,100%);text-align:center;box-shadow:0 16px 45px #001f1280}.modal h2{font-size:27px;margin:5px 0 10px;line-height:1.15}.modal p{font-size:14px;line-height:1.5;margin:0 0 16px;color:#536f5b}.modal .btn{width:100%}
+@media (min-width:790px){.photos{grid-template-columns:1fr 1fr}.plane.zoom{width:1050px;min-width:1050px}body{padding-top:28px}.content{padding:19px 20px 10px}.tools{padding:15px 20px 0}}
+@media (max-width:410px){header{padding:12px 14px 15px}.stats{gap:5px;padding:8px}.stat{padding:7px 3px}.stat b{font-size:21px}.stat label{font-size:11px}.content{padding:11px 8px 5px}.tools{padding:9px 8px 0;gap:6px}.btn{font-size:12px;min-width:94px;min-height:43px}.plane.zoom{width:730px;min-width:730px}}
+
+</style></head>
+<body>
+<main class="container" aria-label="KIleicht Unterschiede finden">
+<header><img class="logo" alt="KIleicht" src="data:image/png;base64,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"/><h1>Finde 5 Unterschiede! 🔎</h1><p>Zwei OpenArt-Fotos derselben Szene – im zweiten fehlen fünf Gegenstände. Wie schnell findest du sie?</p></header>
+<div class="stats"><div class="stat"><label>Gefunden</label><b id="count">0 / 5</b></div><div class="stat"><label>Zeit übrig</label><b id="timer">90 s</b></div><div class="stat"><label>Punkte</label><b id="score">0</b></div></div>
+<section class="content"><p class="intro">Vergleiche die Bilder. Tippe die fehlenden Stellen <b>im veränderten Bild</b> an. Vergrößern und seitlich wischen ist erlaubt!</p>
+<div class="photos">
+<div class="photo-box"><div class="photo-title"><h2>① Originalbild</h2><span>Zur Orientierung</span></div><div class="viewport" id="originalView"><div class="plane" id="original"><img src="https://cdn.openart.ai/openart-ai/production/2026-11/create-image/kTbm9oDPa5Y2NAY1KVaS/gpt-image-2-6-sunburst-edit-1_1794372714352_7dd6078a.png" alt="OpenArt Originalfoto: voller Schreibtisch" width="1792" height="1344" draggable="false" loading="eager"/></div></div></div>
+<div class="photo-box"><div class="photo-title"><h2>② Vergleichsbild</h2><span>Hier tippen!</span></div><div class="viewport" id="changedView"><div class="plane" id="changed"><img src="https://cdn.openart.ai/openart-ai/production/2026-11/create-image/kTbm9oDPa5Y2NAY1KVaS/gpt-image-2-6-sunburst-edit-1_1794372886244_089b35e1.png" alt="OpenArt Vergleichsbild: Schreibtisch mit fünf fehlenden Gegenständen" width="1792" height="1344" draggable="false" loading="eager"/></div></div></div>
+</div></section>
+<div class="tools">
+<button class="btn primary" id="toggleZoom" type="button">🔍 Vergrößern</button>
+<button class="btn" id="hint" type="button" disabled>💡 Hinweis −5</button>
+<button class="btn" id="reset" type="button">↻ Neustart</button>
+</div>
+<div id="toast" role="status" aria-live="polite">Bereit? Starte eine neue Runde!</div>
+<footer><b>KIleicht – Finde 5 Unterschiede.</b> Mit ChatGPT umgesetzt. Das Motiv wurde mit KI erzeugt. Beide Fotos wurden mit OpenArt erzeugt. Die Vergleichsversion basiert auf dem Original. Für das Laden der Fotos wird eine Internetverbindung benötigt. Die fünf Trefferzonen wurden auf dem Smartphone geprüft.</footer>
+</main>
+<div id="introModal" class="screen show" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div style="font-size:36px">🕵️</div><h2 id="modalTitle">Bist du bereit?</h2><p>Vergleiche die beiden echten OpenArt-Fotos. Du hast 90 Sekunden. Tippe auf die fehlenden Stellen im zweiten Foto.</p><button id="play" class="btn primary" type="button">▶ Jetzt spielen</button></div></div>
+<div id="endModal" class="screen" role="dialog" aria-modal="true" aria-labelledby="endTitle"><div class="modal"><div style="font-size:38px" id="endIcon">🏆</div><h2 id="endTitle">Geschafft!</h2><p id="endMessage"></p><button id="again" class="btn primary" type="button">↻ Noch eine Runde</button></div></div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const names=['Schere','Brille','Keks','schwarze Klammer','Schlüssel'];
+// V7: Exact positions supplied by the user after in-game calibration of the V6 comparison image.
+// All coordinates are normalized to the bounds of the comparison image, not its screen container.
+const spots=[
+ {name:'Schere',x:0.11500,y:0.82680,rx:0.052,ry:0.07},
+ {name:'Brille',x:0.84488,y:0.68737,rx:0.052,ry:0.07},
+ {name:'Keks',x:0.34652,y:0.33270,rx:0.052,ry:0.07},
+ {name:'schwarze Klammer',x:0.52052,y:0.18668,rx:0.052,ry:0.07},
+ {name:'Schlüssel',x:0.72489,y:0.12870,rx:0.052,ry:0.07}
+];
+let playing=false,done=false,time=90,points=0,found=new Set(),timeId=null,zoomed=false,hintId=null,pointerDown=null;
+const views=[$('originalView'),$('changedView')];
+const say=s=>{$('toast').textContent=s};
+function pointFromEvent(ev){const img=$('changed').querySelector('img');const r=img.getBoundingClientRect();return{x:(ev.clientX-r.left)/r.width,y:(ev.clientY-r.top)/r.height,w:r.width,h:r.height}}
+function addMarker(x,y,type='found',label=''){
+ const m=document.createElement('div');m.className='marker'+(type==='hint'?' hint':'');
+ m.style.left=(x*100)+'%';m.style.top=(y*100)+'%';if(label)m.title=label;
+ $('changed').appendChild(m);return m;
+}
+function render(){
+ $('count').textContent=found.size+' / 5';$('score').textContent=points;$('timer').textContent=time+' s';
+ $('hint').disabled=!playing||done||found.size===5;
+ $('changed').querySelectorAll('.marker').forEach(n=>n.remove());
+ spots.forEach((s,i)=>{if(found.has(i))addMarker(s.x,s.y,'found',names[i])});
+}
+function stop(){if(timeId!==null){clearInterval(timeId);timeId=null}if(hintId!==null){clearTimeout(hintId);hintId=null}}
+function start(){
+ const pics=[$('original').querySelector('img'),$('changed').querySelector('img')];
+ if(pics.some(p=>!p.complete||!p.naturalWidth)){
+  say('Die OpenArt-Bilder sind noch nicht geladen. Bitte Internetverbindung prüfen.');return;
+ }
+ stop();time=90;points=0;found.clear();playing=true;done=false;
+ $('introModal').classList.remove('show');$('endModal').classList.remove('show');render();say('Los geht’s! Vergleiche die Bilder.');
+ const began=Date.now();timeId=setInterval(()=>{
+  const t=Math.max(0,90-Math.floor((Date.now()-began)/1000));if(t!==time){time=t;render()}if(time===0)finish(false);
+ },250);
+}
+function finish(success){
+ if(done)return;playing=false;done=true;stop();
+ $('endIcon').textContent=success?'🏆':'⏱️';
+ $('endTitle').textContent=success?'Alle fünf gefunden!':'Zeit abgelaufen!';
+ $('endMessage').textContent=success?`Super! ${points} Punkte in ${90-time} Sekunden. Möchtest du es noch einmal versuchen?`:`${found.size} von 5 Unterschieden gefunden. Versuch es noch einmal!`;
+ $('endModal').classList.add('show');render();
+}
+function checkTap(ev){
+ if(!playing||done)return;
+ const p=pointFromEvent(ev);
+ if(p.x<0||p.x>1||p.y<0||p.y>1)return;
+ // Elliptical hit zones scale with the original comparison image; minimum tap tolerance for phones.
+ const hit=spots.findIndex((s,i)=>!found.has(i)&&((p.x-s.x)/Math.max(s.rx,22/p.w))**2+((p.y-s.y)/Math.max(s.ry,22/p.h))**2<=1);
+ if(hit>=0){
+  found.add(hit);points+=20;say(`✅ ${names[hit]} erkannt – ${found.size} von 5! +20 Punkte`);
+  render();if(found.size===5)finish(true);
+ }else{points=Math.max(0,points-2);render();say('Fast! Schau genau hin. −2 Punkte.')}
+}
+$('changed').addEventListener('pointerdown',e=>{pointerDown={x:e.clientX,y:e.clientY}});
+$('changed').addEventListener('pointerup',e=>{
+ if(!pointerDown)return;
+ const moved=Math.hypot(e.clientX-pointerDown.x,e.clientY-pointerDown.y);pointerDown=null;
+ if(moved<12)checkTap(e);
+});
+$('changed').addEventListener('pointercancel',()=>pointerDown=null);
+$('play').onclick=start;$('again').onclick=start;
+$('reset').onclick=()=>{stop();playing=false;done=false;found.clear();points=0;time=90;$('introModal').classList.add('show');$('endModal').classList.remove('show');render();say('Bereit für einen neuen Versuch.')};
+$('toggleZoom').onclick=()=>{
+ zoomed=!zoomed;
+ for(const id of ['original','changed'])$(id).classList.toggle('zoom',zoomed);
+ $('toggleZoom').textContent=zoomed?'🔎 Ganze Ansicht':'🔍 Vergrößern';
+ views.forEach(v=>v.scrollLeft=0);
+ say(zoomed?'Du kannst beide Bilder seitlich verschieben.':'Beide Bilder wieder komplett sichtbar.');
+};
+$('hint').onclick=()=>{
+ if(!playing||done)return;
+ const i=spots.findIndex((s,j)=>!found.has(j));if(i<0)return;
+ points=Math.max(0,points-5);render();const m=addMarker(spots[i].x,spots[i].y,'hint');
+ say('💡 Hier solltest du genauer vergleichen. −5 Punkte.');
+ if(hintId!==null)clearTimeout(hintId);hintId=setTimeout(()=>m.remove(),1600);
+};
+let syncLock=false;
+views.forEach((view,idx)=>view.addEventListener('scroll',()=>{
+ if(syncLock)return;syncLock=true;const other=views[1-idx];
+ const scale=other.scrollWidth>other.clientWidth&&view.scrollWidth>view.clientWidth?(other.scrollWidth-other.clientWidth)/(view.scrollWidth-view.clientWidth):0;
+ other.scrollLeft=view.scrollLeft*scale;requestAnimationFrame(()=>syncLock=false);
+},{passive:true}));
+for(const img of document.querySelectorAll('.plane img'))img.addEventListener('error',()=>say('⚠️ Das OpenArt-Foto konnte nicht geladen werden. Bitte Internetverbindung prüfen.'));
+render();say('Alle fünf Trefferpositionen sind eingerichtet. Bereit zum Spielen!');
+})();
+</script>
+</body></html>
