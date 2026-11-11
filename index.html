@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="de">
 <head>
-<link rel="preconnect" href="https://cdn.openart.ai" crossorigin>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <meta name="theme-color" content="#113d30"/>
@@ -35,8 +34,8 @@ footer{margin-top:5px;padding:13px 17px 18px;background:#eef4e9;color:#647c6c;fo
 <div class="stats"><div class="stat"><label>Gefunden</label><b id="count">0 / 5</b></div><div class="stat"><label>Zeit übrig</label><b id="timer">90 s</b></div><div class="stat"><label>Punkte</label><b id="score">0</b></div></div>
 <section class="content"><p class="intro">Vergleiche die Bilder. Tippe die fehlenden Stellen <b>im veränderten Bild</b> an. Vergrößern und seitlich wischen ist erlaubt!</p>
 <div class="photos">
-<div class="photo-box"><div class="photo-title"><h2>① Originalbild</h2><span>Zur Orientierung</span></div><div class="viewport" id="originalView"><div class="plane" id="original"><img src="https://cdn.openart.ai/openart-ai/production/2026-11/create-image/kTbm9oDPa5Y2NAY1KVaS/gpt-image-2-6-sunburst-edit-1_1794372714352_7dd6078a.png" alt="OpenArt Originalfoto: voller Schreibtisch" width="1792" height="1344" draggable="false" loading="eager"/></div></div></div>
-<div class="photo-box"><div class="photo-title"><h2>② Vergleichsbild</h2><span>Hier tippen!</span></div><div class="viewport" id="changedView"><div class="plane" id="changed"><img src="https://cdn.openart.ai/openart-ai/production/2026-11/create-image/kTbm9oDPa5Y2NAY1KVaS/gpt-image-2-6-sunburst-edit-1_1794372886244_089b35e1.png" alt="OpenArt Vergleichsbild: Schreibtisch mit fünf fehlenden Gegenständen" width="1792" height="1344" draggable="false" loading="eager"/></div></div></div>
+<div class="photo-box"><div class="photo-title"><h2>① Originalbild</h2><span>Zur Orientierung</span></div><div class="viewport" id="originalView"><div class="plane" id="original"><img src="./original.png" alt="OpenArt Originalfoto: voller Schreibtisch" width="1792" height="1344" draggable="false" loading="eager"/></div></div></div>
+<div class="photo-box"><div class="photo-title"><h2>② Vergleichsbild</h2><span>Hier tippen!</span></div><div class="viewport" id="changedView"><div class="plane" id="changed"><img src="./vergleich.png" alt="OpenArt Vergleichsbild: Schreibtisch mit fünf fehlenden Gegenständen" width="1792" height="1344" draggable="false" loading="eager"/></div></div></div>
 </div></section>
 <div class="tools">
 <button class="btn primary" id="toggleZoom" type="button">🔍 Vergrößern</button>
